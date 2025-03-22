@@ -1,0 +1,10 @@
+{  
+  "logoPath": "/logo.png",  
+  "templates": ["/templates/1.svg", "/templates/2.svg"],  
+  "defaultPriceStyle": { 
+    "fontSize": 36, 
+    "color": "#0F2D52",
+    "fontFamily": "Arial",
+    "fontWeight": "bold"
+  }  
+}

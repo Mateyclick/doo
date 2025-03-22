@@ -1,0 +1,144 @@
+Objective: Create a web app where users can:
+
+Upload an image.
+
+Automatically remove the background (using Remove.bg API or open-source library) and manually refine it with an eraser tool.
+
+Overlay the edited image onto a customizable offer template (e.g., 100.jpg).
+
+Add and customize price text (size, color, drag-and-drop positioning).
+
+Download the final image with instructions to share it as a WhatsApp Status.
+
+Technical Requirements:
+Frontend: React.js (functional components, hooks).
+
+Key Libraries:
+
+axios for Remove.bg API integration.
+
+fabric.js for canvas-based image manipulation (eraser tool, positioning).
+
+react-dropzone for image uploads.
+
+Optional: @imgly/background-removal for open-source background removal (fallback if no API).
+
+Templates: Admin uploads PNG templates to /public/templates. Users select from these.
+
+Config: A config.json file to define default styles and template paths.
+
+App Flow:
+Step 1 - Upload & Background Removal:
+
+User uploads an image.
+
+Auto-remove background via Remove.bg API (show loading state).
+
+Allow manual touch-ups using fabric.js eraser tool.
+
+Step 2 - Template & Positioning:
+
+User selects a template (from /public/templates).
+
+Drag, resize, and position the image on the template using fabric.js canvas.
+
+Step 3 - Price Customization:
+
+Input field for price text.
+
+Controls for font size, color, and drag-to-position functionality.
+
+Step 4 - Preview & Share:
+
+Show final preview.
+
+Download button that:
+
+Exports the canvas as oferta-final.png.
+
+Displays instructions: “Open WhatsApp → Status → Upload this image”.
+
+Code Structure:
+Components:
+
+ImageUploader.jsx: Handles image upload and Remove.bg API call.
+
+CanvasEditor.jsx: Canvas for manual edits and template positioning.
+
+PriceEditor.jsx: Text customization inputs and drag-and-drop.
+
+PreviewShare.jsx: Download button with WhatsApp instructions.
+
+State Management:
+
+Use React Context or useReducer to track:
+
+Processed image.
+
+Selected template.
+
+Price text and styling.
+
+Admin Configuration:
+
+config.json example:
+
+json
+Copy
+{
+  "templates": ["100.jpg", "summer_offer.png"],
+  "defaultPriceStyle": { "fontSize": "32px", "color": "#FF0000" }
+}
+API Integration (Remove.bg):
+Sign up at Remove.bg to get a free API key (50 credits/month).
+
+Add the key to a .env file:
+
+env
+Copy
+REACT_APP_REMOVEBG_API_KEY=your_api_key_here
+Use axios to send images:
+
+jsx
+Copy
+// Example API call in ImageUploader.jsx
+const response = await axios.post(
+  'https://api.remove.bg/v1.0/removebg',
+  formData,
+  { headers: { 'X-Api-Key': process.env.REACT_APP_REMOVEBG_API_KEY } }
+);
+Fallback (No API):
+Use @imgly/background-removal for free, client-side background removal:
+
+bash
+Copy
+npm install @imgly/background-removal
+jsx
+Copy
+import { removeBackground } from "@imgly/background-removal";
+const imageBlob = await removeBackground(imageFile);
+Instructions for the AI:
+Generate React code with the components listed above.
+
+Implement drag-and-drop positioning for both the image and price text.
+
+Ensure mobile responsiveness (touch gestures for canvas).
+
+Include error handling for API calls and image processing.
+
+Final Output Expected:
+
+A working React app with:
+
+Background removal (API or fallback).
+
+Template system.
+
+Price customization.
+
+WhatsApp Status download flow.
+
+Documentation for admin template uploads and configuration.
+
+Attached Reference Image:
+100.jpg (Description: Sample offer template with text "OFERTA" and price placeholder.)

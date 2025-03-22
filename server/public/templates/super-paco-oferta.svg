@@ -1,0 +1,16 @@
+
+  <svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1080" height="1920" fill="#FF3B30"/>
+    <path d="M540 960 L890 750 L890 1170 Z" fill="#FFD700"/>
+    <path d="M540 960 L190 750 L190 1170 Z" fill="#FFD700"/>
+    <path d="M540 960 L540 610 L190 610 Z" fill="#FFD700"/>
+    <path d="M540 960 L540 1310 L890 1310 Z" fill="#FFD700"/>
+    <path d="M540 640 L660 400 L420 400 Z" fill="white"/>
+    <path d="M540 1280 L660 1520 L420 1520 Z" fill="white"/>
+    <path d="M640 960 L880 840 L880 1080 Z" fill="white"/>
+    <path d="M440 960 L200 840 L200 1080 Z" fill="white"/>
+    <circle cx="540" cy="960" r="260" fill="white"/>
+    <text x="540" y="400" font-family="Inter, sans-serif" font-size="120" font-weight="bold" fill="#FFD700" text-anchor="middle">SUPER PACO</text>
+    <text x="540" y="550" font-family="Inter, sans-serif" font-size="200" font-weight="bold" fill="white" text-anchor="middle">OFERTA</text>
+    <text x="540" y="1550" font-family="Inter, sans-serif" font-size="100" font-weight="bold" fill="#FFD700" text-anchor="middle">Energizante Monster</text>
+  </svg>

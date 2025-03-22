@@ -1,0 +1,127 @@
+Objective:
+Modify the existing "Germancito" web app to include:
+
+Branding:
+
+A header with a logo (loaded from /public/logo.png via config.json).
+
+Color scheme: Club Nacional de Uruguay’s official colors (#0F2D52, #FFFFFF, #FF0000).
+
+Instagram Story Compliance:
+
+Templates and final output in 1080x1920px (Instagram Story dimensions).
+
+Usage Counter: Track total edits made (stored in localStorage).
+
+Image Preprocessing: Resize uploaded images to 720px width/height (if needed) before sending to Remove.bg API.
+
+Modifications Needed:
+1. Logo Integration:
+Add a Header component displaying the logo from config.json.
+
+Example config.json:
+
+json
+Copy
+{  
+  "logoPath": "/logo.png",  
+  "templates": ["story-template1.png", "story-template2.png"],  
+  "defaultPriceStyle": { "fontSize": "36px", "color": "#0F2D52" }  
+}  
+2. Color Scheme Update:
+Apply Club Nacional’s colors to:
+
+Backgrounds, buttons, headers (use #0F2D52 for primary, #FF0000 for accents).
+
+Text and canvas elements (ensure contrast with #FFFFFF).
+
+3. Instagram Story Dimensions:
+Set canvas and templates to 1080x1920px in fabric.js:
+
+jsx
+Copy
+// Canvas initialization  
+const canvas = new fabric.Canvas("canvas", {  
+  width: 1080,  
+  height: 1920,  
+  backgroundColor: "#FFFFFF"  
+});  
+4. Usage Counter:
+Implement a counter using localStorage:
+
+jsx
+Copy
+// In PreviewShare.jsx  
+const [usageCount, setUsageCount] = useState(  
+  parseInt(localStorage.getItem("germancitoUsage")) || 0  
+);  
+
+const handleDownload = () => {  
+  // ... existing download logic  
+  setUsageCount(prev => {  
+    const newCount = prev + 1;  
+    localStorage.setItem("germancitoUsage", newCount.toString());  
+    return newCount;  
+  });  
+};  
+5. Image Preprocessing for Remove.bg:
+Resize images to 720px (max dimension) before API call:
+
+jsx
+Copy
+// In ImageUploader.jsx  
+const resizeImage = (file) => {  
+  return new Promise((resolve) => {  
+    const reader = new FileReader();  
+    reader.onload = (e) => {  
+      const img = new Image();  
+      img.src = e.target.result;  
+      img.onload = () => {  
+        const canvas = document.createElement("canvas");  
+        const MAX_SIZE = 720;  
+        let width = img.width;  
+        let height = img.height;  
+
+        if (width > height && width > MAX_SIZE) {  
+          height *= MAX_SIZE / width;  
+          width = MAX_SIZE;  
+        } else if (height > MAX_SIZE) {  
+          width *= MAX_SIZE / height;  
+          height = MAX_SIZE;  
+        }  
+
+        canvas.width = width;  
+        canvas.height = height;  
+        const ctx = canvas.getContext("2d");  
+        ctx.drawImage(img, 0, 0, width, height);  
+        canvas.toBlob(resolve, "image/jpeg", 0.9);  
+      };  
+    };  
+    reader.readAsDataURL(file);  
+  });  
+};  
+
+// Use before calling Remove.bg API  
+const resizedBlob = await resizeImage(imageFile);  
+Instructions for the AI:
+Update existing React components to reflect the above changes.
+
+Ensure mobile responsiveness for 1080x1920px canvas.
+
+Test Remove.bg integration with resized images.
+
+Add the logo and usage counter to the UI.
+
+Final Output:
+A modified "Germancito" app with branding, Instagram Story support, usage tracking, and image preprocessing.
+
+⚽ Note: Use CSS variables for colors to simplify theme management.
+🇺🇾 Example CSS:
+
+css
+Copy
+:root {  
+  --primary: #0F2D52;  
+  --accent: #FF0000;  
+  --background: #FFFFFF;  
+}  

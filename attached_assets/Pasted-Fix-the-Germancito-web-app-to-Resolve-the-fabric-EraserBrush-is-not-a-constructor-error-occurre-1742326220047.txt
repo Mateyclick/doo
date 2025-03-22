@@ -1,0 +1,101 @@
+Fix the "Germancito" web app to:
+
+Resolve the fabric.EraserBrush is not a constructor error (occurred when selecting the eraser tool and clicking "Erase").
+
+Restructure the workflow for mobile-first UX:
+
+Step 1: Auto-background removal + manual eraser.
+
+Step 2: Template selection and image positioning/scaling.
+
+Step 3: Price customization (text, color, drag-to-place).
+
+Step 4: Preview and share (image-only export, no app branding).
+
+Ensure full Spanish translation for all UI elements.
+
+Critical Fixes:
+1. Eraser Tool Workaround:
+Replace fabric.EraserBrush with a compatible solution (e.g., transparent brush):
+
+tsx
+Copy
+// In ImageUploader.tsx  
+const activateEraser = () => {  
+  const canvas = fabricCanvasRef.current;  
+  if (!canvas) return;  
+
+  canvas.isDrawingMode = true;  
+  canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);  
+  canvas.freeDrawingBrush.color = "rgba(0, 0, 0, 0)"; // Transparent "erase"  
+  canvas.freeDrawingBrush.width = 20;  
+};  
+2. Step Navigation Logic:
+Next Button: Only show after background removal:
+
+tsx
+Copy
+{processedImage && (  
+  <button onClick={() => setCurrentStep(2)}>Siguiente</button>  
+)}  
+3. Mobile Optimization:
+Responsive Canvas:
+
+css
+Copy
+.canvas-container {  
+  width: 100% !important;  
+  height: 70vh !important;  
+  touch-action: pan-y pinch-zoom;  
+}  
+Large Touch Targets:
+
+tsx
+Copy
+<button className="boton-mobile">Siguiente →</button>  
+Additional Requirements:
+Image Resizing: Resize images to 720px before sending to Remove.bg API.
+
+Template Dimensions: Strictly 1080x1920px (Instagram Story).
+
+Spanish UI: All text labels, buttons, and alerts in Spanish.
+
+Code to Provide (Example):
+tsx
+Copy
+// Updated ImageUploader.tsx (partial)  
+import { fabric } from "fabric";  
+
+export const ImageUploader = () => {  
+  const fabricCanvasRef = useRef<fabric.Canvas | null>(null);  
+
+  const activateEraser = () => {  
+    // Fixed eraser logic (transparent brush)  
+    const canvas = fabricCanvasRef.current;  
+    if (!canvas) return;  
+    canvas.isDrawingMode = true;  
+    canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);  
+    canvas.freeDrawingBrush.color = "rgba(0, 0, 0, 0)";  
+  };  
+
+  return (  
+    <div>  
+      <button onClick={activateEraser}>Usar Goma</button>  
+      <canvas ref={canvasRef} />  
+    </div>  
+  );  
+};  
+Instructions for the AI:
+Generate TypeScript (React) code with:
+
+Mobile-responsive UI (CSS Grid/Flexbox).
+
+Step-based navigation (useState).
+
+Spanish translations for all text.
+
+Test eraser functionality with fabric.js@5.3.0.
+
+Note: The code above is a suggested fix. The error likely occurred due to an unsupported EraserBrush in your current fabric.js version. This workaround uses a transparent brush instead.
+
+Final Output: A mobile-friendly app with no errors, Spanish UI, and seamless step flow. 📱✨

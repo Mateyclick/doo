@@ -1,0 +1,7 @@
+
+  <svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1080" height="1920" fill="#FF9500"/>
+    <text x="540" y="450" font-family="Inter, sans-serif" font-size="220" font-weight="bold" fill="white" text-anchor="middle">SALE</text>
+    <circle cx="540" cy="960" r="450" fill="white"/>
+    <text x="540" y="1600" font-family="Inter, sans-serif" font-size="120" font-weight="bold" fill="white" text-anchor="middle">Limited Time Only!</text>
+  </svg>

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "super-paco-oferta",
+    "name": "Super Paco Oferta",
+    "path": "/templates/super-paco-oferta.svg",
+    "type": "image"
+  },
+  {
+    "id": "sale",
+    "name": "Sale",
+    "path": "/templates/sale.svg",
+    "type": "image"
+  },
+  {
+    "id": "fifty-percent-off",
+    "name": "50% Off",
+    "path": "/templates/fifty-percent-off.svg",
+    "type": "image"
+  },
+  {
+    "id": "new",
+    "name": "New",
+    "path": "/templates/new.svg",
+    "type": "image"
+  },
+  {
+    "id": "custom-color-1",
+    "name": "Red",
+    "type": "color",
+    "backgroundColor": "#FF3B30"
+  },
+  {
+    "id": "custom-color-2",
+    "name": "Blue",
+    "type": "color",
+    "backgroundColor": "#007AFF"
+  },
+  {
+    "id": "custom-color-3",
+    "name": "Green",
+    "type": "color",
+    "backgroundColor": "#34C759"
+  },
+  {
+    "id": "custom-color-4",
+    "name": "Orange",
+    "type": "color",
+    "backgroundColor": "#FF9500"
+  }
+]

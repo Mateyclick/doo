@@ -1,0 +1,30 @@
+
+{
+  "logoPath": "/logo.png",
+  "templates": [
+    {
+      "id": "1",
+      "name": "Standard Offer",
+      "path": "/templates/1.svg"
+    },
+    {
+      "id": "2",
+      "name": "Discount",
+      "path": "/templates/2.svg"
+    },
+    {
+      "id": "3",
+      "name": "Special", 
+      "path": "/templates/3.svg"
+    },
+    {
+      "id": "4",
+      "name": "Limited Time",
+      "path": "/templates/4.svg"
+    }
+  ],
+  "defaultPriceStyle": {
+    "fontSize": 36,
+    "color": "#FF0000"
+  }
+}
